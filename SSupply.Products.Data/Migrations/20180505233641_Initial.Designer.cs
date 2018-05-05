@@ -11,7 +11,7 @@ using System;
 namespace SSupply.Products.Data.Migrations
 {
     [DbContext(typeof(ProductsDbContext))]
-    [Migration("20180505225002_Initial")]
+    [Migration("20180505233641_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace SSupply.Products.Data.Migrations
                 .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("SSupply.Products.Data.Models.Product", b =>
+            modelBuilder.Entity("SSupply.Products.Data.Models.ProductDefinition", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -32,8 +32,6 @@ namespace SSupply.Products.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<Guid>("PhotoId");
-
                     b.Property<decimal>("Price");
 
                     b.HasKey("Id");
@@ -43,15 +41,13 @@ namespace SSupply.Products.Data.Migrations
 
             modelBuilder.Entity("SSupply.Products.Data.Models.ProductImage", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("ProductId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<byte[]>("Image")
                         .IsRequired();
 
-                    b.Property<Guid>("ProductId");
-
-                    b.HasKey("Id");
+                    b.HasKey("ProductId");
 
                     b.ToTable("ProductImages");
                 });

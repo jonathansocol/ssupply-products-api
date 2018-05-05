@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SSupply.Products.Data.Models
 {
-    public class Product
+    public class ProductDefinition
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
@@ -12,9 +12,6 @@ namespace SSupply.Products.Data.Models
 
         [Required]
         public string Name { get; set; }
-
-        [Required]
-        public Guid PhotoId { get; set; }
 
         [Required]
         public decimal Price { get; set; }

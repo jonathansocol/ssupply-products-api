@@ -10,7 +10,7 @@ namespace SSupply.Products.Models
             Id = id;
             Name = name;
             Photo = photo;
-            Price = price;            
+            Price = price;      
         }
 
         public Guid Id { get; set; }

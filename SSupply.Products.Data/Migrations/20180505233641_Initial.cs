@@ -12,13 +12,12 @@ namespace SSupply.Products.Data.Migrations
                 name: "ProductImages",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    Image = table.Column<byte[]>(nullable: false),
-                    ProductId = table.Column<Guid>(nullable: false)
+                    ProductId = table.Column<Guid>(nullable: false),
+                    Image = table.Column<byte[]>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductImages", x => x.Id);
+                    table.PrimaryKey("PK_ProductImages", x => x.ProductId);
                 });
 
             migrationBuilder.CreateTable(
@@ -28,7 +27,6 @@ namespace SSupply.Products.Data.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     LastUpdated = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: false),
-                    PhotoId = table.Column<Guid>(nullable: false),
                     Price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
