@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace SSupply.Products.Api.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class ProductsController : Controller
     {
         // GET api/values
         [HttpGet]

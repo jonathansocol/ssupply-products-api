@@ -17,4 +17,9 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SSupply.Products.Data\SSupply.Products.Data.csproj" />
+    <ProjectReference Include="..\SSupply.Products\SSupply.Products.csproj" />
+  </ItemGroup>
+
 </Project>

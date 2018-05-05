@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using SSupply.Products.Data;
+using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace SSupply.Products.Api
 {
@@ -23,7 +20,17 @@ namespace SSupply.Products.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetConnectionString("ProductsDb");
+
+            services.AddDbContext<ProductsDbContext>(opt => opt.UseSqlServer(connectionString));
+
             services.AddMvc();
+
+            services.AddSwaggerGen(opt =>
+                {
+                    opt.SwaggerDoc("Products API", new Info { Title = "Products API" });
+                }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,6 +40,13 @@ namespace SSupply.Products.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            var swaggerPath = Configuration["SwaggerPath"];
+
+            app.UseSwaggerUI(opt =>
+            {
+                opt.SwaggerEndpoint(swaggerPath, "Products API");
+            });
 
             app.UseMvc();
         }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SSupply.Products.Data.Repositories
 {
-    public class ProductRepository : BaseRepository<ProductEntity>
+    public class ProductRepository : BaseRepository<Product>
     {
         public ProductRepository(DbContext dbContext) : base(dbContext) { }
     }

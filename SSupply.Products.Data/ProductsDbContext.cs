@@ -13,6 +13,11 @@ namespace SSupply.Products.Data
 
         public ProductsDbContext(DbContextOptions<ProductsDbContext> options) : base(options) { }
 
-        public virtual DbSet<ProductEntity> Products { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>().Property(x => x.LastUpdated).IsConcurrencyToken();
+        }
     }
 }
