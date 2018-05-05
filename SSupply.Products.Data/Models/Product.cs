@@ -13,9 +13,8 @@ namespace SSupply.Products.Data.Models
         [Required]
         public string Name { get; set; }
 
-        [Url]
         [Required]
-        public virtual ProductImage Photo { get; set; }
+        public Guid PhotoId { get; set; }
 
         [Required]
         public decimal Price { get; set; }

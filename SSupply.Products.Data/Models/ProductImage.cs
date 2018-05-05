@@ -12,6 +12,9 @@ namespace SSupply.Products.Data.Models
         [Key]
         public Guid Id { get; set; }
 
+        public Guid ProductId { get; set; }
+
+        [Required]
         public byte[] Image { get; set; }
     }
 }
