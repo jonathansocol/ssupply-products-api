@@ -43,7 +43,7 @@ namespace SSupply.Products.Data.Managers
             return product;
         }
 
-        public IQueryable<Product> GetAll()
+        public IEnumerable<Product> GetAll()
         {
             return _productDefinitionRepository.GetAll().Select(x => new Product(x.Id, x.Name, null, x.Price));
         }
@@ -57,13 +57,14 @@ namespace SSupply.Products.Data.Managers
                 LastUpdated = DateTime.UtcNow
             };
 
+            var newProduct = await _productDefinitionRepository.Insert(productDefinition);
+
             var productImage = new ProductImage
             {
-                ProductDefinitionId = product.Id,
+                ProductDefinitionId = newProduct.Id,
                 Image = product.Photo
             };
 
-            var newProduct = await _productDefinitionRepository.Insert(productDefinition);
             await _productImageRepository.Insert(productImage);
 
             await _productDefinitionRepository.Commit();

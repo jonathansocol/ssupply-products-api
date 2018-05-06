@@ -35,7 +35,7 @@ namespace SSupply.Products.Api.Controllers
         // GET api/values
         [HttpGet]
         public ActionResult Get()
-        {
+        {            
             return Ok(_productService.GetAllProducts());
         }
 
@@ -55,10 +55,12 @@ namespace SSupply.Products.Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody]Product product)
+        public async Task<ActionResult> Post([FromBody]ProductDefinitionDto productDto)
         {
             if (ModelState.IsValid)
             {
+                var product = _mapper.Map<Product>(productDto);
+
                 var id = await _productService.InsertNewProduct(product);
 
                 return Created($"{_httpContextAccessor.HttpContext.Request.Path.Value}/{id}", null);
@@ -76,7 +78,9 @@ namespace SSupply.Products.Api.Controllers
                 return BadRequest();
             }
 
-            var product = _mapper.Map<Product>(productDto, opt => opt.Items.Add("Id", id));
+            var product = _mapper.Map<Product>(productDto);
+
+            product.Id = id;
 
             try
             {

@@ -22,7 +22,7 @@ namespace SSupply.Products.Services
             return _productManager.GetById(id);
         }
 
-        public IQueryable<Product> GetAllProducts()
+        public IEnumerable<Product> GetAllProducts()
         {
             return _productManager.GetAll();
         }

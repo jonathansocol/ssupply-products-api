@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SSupply.Products.Data.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,14 +30,24 @@ namespace SSupply.Products.Data.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public IQueryable<T> GetAll()
+        public IEnumerable<T> GetAll()
         {
             return _dbContext.Set<T>();
+        }
+
+        public IEnumerable<T> GetAllBy(Func<T, bool> predicate)
+        {
+            return _dbContext.Set<T>().Where(predicate);
         }
 
         public T GetById(Guid id)
         {
             return _dbContext.Set<T>().Find(id);
+        }
+
+        public T GetBy(Func<T, bool> predicate)
+        {
+            return _dbContext.Set<T>().FirstOrDefault(predicate);
         }
 
         public async Task Commit()

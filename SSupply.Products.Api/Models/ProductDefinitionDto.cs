@@ -13,9 +13,7 @@ namespace SSupply.Products.Api.Models
             Photo = photo;
             Price = price;
         }
-
-        public Guid Id { get; set; }
-
+        
         public string Name { get; set; }
 
         public byte[] Photo { get; set; }

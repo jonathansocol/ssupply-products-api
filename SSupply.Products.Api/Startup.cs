@@ -28,8 +28,10 @@ namespace SSupply.Products.Api
         {
             var connectionString = Configuration.GetConnectionString("ProductsDb");
 
-            services.AddDbContext<ProductsDbContext>(opt => opt.UseSqlServer(connectionString));
+            services.AddEntityFrameworkSqlServer()
+                .AddDbContext<ProductsDbContext>(opt => opt.UseSqlServer(connectionString));
 
+            services.AddScoped<DbContext, ProductsDbContext>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductManager, ProductManager>();
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
@@ -39,7 +41,7 @@ namespace SSupply.Products.Api
 
             services.AddSwaggerGen(opt =>
                 {
-                    opt.SwaggerDoc("Products API", new Info { Title = "Products API" });
+                    opt.SwaggerDoc("v1", new Info { Title = "Products API" });
                 }
             );
         }

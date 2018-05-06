@@ -10,8 +10,10 @@ namespace SSupply.Products.Data.Interfaces
     {
         Task<T> Insert(T entity);
         Task Delete(T entity);
-        IQueryable<T> GetAll();
+        IEnumerable<T> GetAll();
+        IEnumerable<T> GetAllBy(Func<T, bool> predicate);
         T GetById(Guid id);
+        T GetBy(Func<T, bool> predicate);
         Task Commit();
     }
 }
