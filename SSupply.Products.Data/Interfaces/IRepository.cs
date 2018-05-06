@@ -8,9 +8,10 @@ namespace SSupply.Products.Data.Interfaces
 {
     public interface IRepository<T>
     {
-        Task Insert(T entity);
+        Task<T> Insert(T entity);
         Task Delete(T entity);
         IQueryable<T> GetAll();
         T GetById(Guid id);
+        Task Commit();
     }
 }

@@ -35,18 +35,18 @@ namespace SSupply.Products.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("ProductDefinitions");
                 });
 
             modelBuilder.Entity("SSupply.Products.Data.Models.ProductImage", b =>
                 {
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid>("ProductDefinitionId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<byte[]>("Image")
                         .IsRequired();
 
-                    b.HasKey("ProductId");
+                    b.HasKey("ProductDefinitionId");
 
                     b.ToTable("ProductImages");
                 });

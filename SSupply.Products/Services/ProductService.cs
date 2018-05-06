@@ -27,14 +27,19 @@ namespace SSupply.Products.Services
             return _productManager.GetAll();
         }
 
-        public async Task InsertNewProduct(Product product)
+        public async Task<Guid> InsertNewProduct(Product product)
         {
-            await _productManager.Insert(product);
+            return await _productManager.Insert(product);
         }
 
-        public async Task DeleteProduct(Product product)
+        public async Task DeleteProduct(Guid id)
         {
-            await _productManager.Delete(product);
+            await _productManager.Delete(id);
+        }
+
+        public async Task UpdateExistingProduct(Product product)
+        {
+            await _productManager.Update(product);
         }
     }
 }

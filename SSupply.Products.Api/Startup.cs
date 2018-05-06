@@ -5,6 +5,12 @@ using Microsoft.Extensions.DependencyInjection;
 using SSupply.Products.Data;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
+using SSupply.Products.Services;
+using SSupply.Products.Data.Managers;
+using SSupply.Products.Data.Repositories;
+using SSupply.Products.Data.Interfaces;
+using SSupply.Products.Interfaces;
+using AutoMapper;
 
 namespace SSupply.Products.Api
 {
@@ -24,6 +30,11 @@ namespace SSupply.Products.Api
 
             services.AddDbContext<ProductsDbContext>(opt => opt.UseSqlServer(connectionString));
 
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductManager, ProductManager>();
+            services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+
+            services.AddAutoMapper();
             services.AddMvc();
 
             services.AddSwaggerGen(opt =>
@@ -40,6 +51,8 @@ namespace SSupply.Products.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
 
             var swaggerPath = Configuration["SwaggerPath"];
 

@@ -1,15 +1,16 @@
-﻿using System;
+﻿using SSupply.Products.Models;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using SSupply.Products.Models;
 
 namespace SSupply.Products.Interfaces
 {
     public interface IProductManager
     {
-        Task Delete(Product product);
+        Task Delete(Guid id);
         IQueryable<Product> GetAll();
         Product GetById(Guid id);
-        Task Insert(Product product);
+        Task<Guid> Insert(Product product);
+        Task Update(Product product);
     }
 }

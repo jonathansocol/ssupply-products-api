@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SSupply.Products.Api.Models;
+using SSupply.Products.Exceptions;
 using SSupply.Products.Models;
 using SSupply.Products.Services;
 
@@ -14,11 +19,17 @@ namespace SSupply.Products.Api.Controllers
     {
         private readonly IProductService _productService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IProductService productService, IHttpContextAccessor httpContextAccessor)
+        public ProductsController(
+            IProductService productService, 
+            IHttpContextAccessor httpContextAccessor,
+            IMapper mapper
+            )
         {
             _productService = productService;
             _httpContextAccessor = httpContextAccessor;
+            _mapper = mapper;
         }
 
         // GET api/values
@@ -44,13 +55,13 @@ namespace SSupply.Products.Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public ActionResult Post([FromBody]Product product)
+        public async Task<ActionResult> Post([FromBody]Product product)
         {
             if (ModelState.IsValid)
             {
-                _productService.InsertNewProduct(product);
+                var id = await _productService.InsertNewProduct(product);
 
-                return Created(_httpContextAccessor.HttpContext.Request.Path.Value, null);
+                return Created($"{_httpContextAccessor.HttpContext.Request.Path.Value}/{id}", null);
             }
 
             return BadRequest(ModelState);
@@ -58,20 +69,46 @@ namespace SSupply.Products.Api.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody]string value)
+        public async Task<ActionResult> Put(Guid id, [FromBody]ProductDto productDto)
         {
-            return NoContent();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var product = _mapper.Map<Product>(productDto, opt => opt.Items.Add("Id", id));
+
+            try
+            {
+                await _productService.UpdateExistingProduct(product);
+            }
+            catch (ProductNotFoundException)
+            {
+                return NotFound(id);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return StatusCode((int)HttpStatusCode.Conflict);
+            }
+
+            return Ok();
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(Guid id)
+        public async Task<ActionResult> Delete(Guid id)
         {
-            var product = _productService.GetProductById(id);
-
-            if (product == null)
+            try
+            {
+                await _productService.DeleteProduct(id);
+            }
+            catch (ProductNotFoundException)
             {
                 return NotFound(id);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return StatusCode((int)HttpStatusCode.Conflict);
             }
 
             return Ok();

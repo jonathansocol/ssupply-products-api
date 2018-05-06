@@ -9,7 +9,7 @@ namespace SSupply.Products.Data.Models
     public class ProductImage
     {
         [Key]
-        public Guid ProductId { get; set; }
+        public Guid ProductDefinitionId { get; set; }
 
         [Required]
         public byte[] Image { get; set; }

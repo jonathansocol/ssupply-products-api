@@ -1,5 +1,7 @@
 ﻿using SSupply.Products.Data.Interfaces;
 using SSupply.Products.Data.Models;
+using SSupply.Products.Exceptions;
+using SSupply.Products.Interfaces;
 using SSupply.Products.Models;
 using System;
 using System.Collections.Generic;
@@ -23,13 +25,18 @@ namespace SSupply.Products.Data.Managers
         public Product GetById(Guid id)
         {
             var productDefinition = _productDefinitionRepository.GetById(id);
-            var productPhoto = _productImageRepository.GetById(id);
+            var productImage = _productImageRepository.GetById(id);
+
+            if (productDefinition == null || productImage == null)
+            {
+                throw new ProductNotFoundException(id);
+            }
 
             var product = new Product
             (
                 productDefinition.Id, 
-                productDefinition.Name, 
-                productPhoto.Image, 
+                productDefinition.Name,
+                productImage.Image, 
                 productDefinition.Price
             );
 
@@ -41,7 +48,7 @@ namespace SSupply.Products.Data.Managers
             return _productDefinitionRepository.GetAll().Select(x => new Product(x.Id, x.Name, null, x.Price));
         }
 
-        public async Task Insert(Product product)
+        public async Task<Guid> Insert(Product product)
         {
             var productDefinition = new ProductDefinition
             {
@@ -52,21 +59,49 @@ namespace SSupply.Products.Data.Managers
 
             var productImage = new ProductImage
             {
-                ProductId = product.Id,
+                ProductDefinitionId = product.Id,
                 Image = product.Photo
             };
 
-            await _productDefinitionRepository.Insert(productDefinition);
+            var newProduct = await _productDefinitionRepository.Insert(productDefinition);
             await _productImageRepository.Insert(productImage);
+
+            await _productDefinitionRepository.Commit();
+            await _productImageRepository.Commit();
+
+            return newProduct.Id;
         }
 
-        public async Task Delete(Product product)
+        public async Task Update(Product product)
         {
-            var productImage = _productImageRepository.GetById(product.Id);
             var productDefinition = _productDefinitionRepository.GetById(product.Id);
+            var productImage = _productImageRepository.GetById(product.Id);
+
+            if (productDefinition == null || productImage == null)
+            {
+                throw new ProductNotFoundException(product.Id);
+            }
+
+            productDefinition.Name = product.Name;
+            productDefinition.Price = product.Price;
+            productDefinition.LastUpdated = DateTime.UtcNow;
+
+            productImage.Image = product.Photo;
+
+            await _productDefinitionRepository.Commit();
+            await _productImageRepository.Commit();
+        }
+
+        public async Task Delete(Guid id)
+        {
+            var productImage = _productImageRepository.GetById(id);
+            var productDefinition = _productDefinitionRepository.GetById(id);
 
             await _productImageRepository.Delete(productImage);
             await _productDefinitionRepository.Delete(productDefinition);
+
+            await _productDefinitionRepository.Commit();
+            await _productImageRepository.Commit();
         }
     }
 }

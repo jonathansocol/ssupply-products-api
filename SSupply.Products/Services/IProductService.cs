@@ -7,9 +7,10 @@ namespace SSupply.Products.Services
 {
     public interface IProductService
     {
-        Task DeleteProduct(Product product);
+        Task DeleteProduct(Guid id);
         IQueryable<Product> GetAllProducts();
         Product GetProductById(Guid id);
-        Task InsertNewProduct(Product product);
+        Task<Guid> InsertNewProduct(Product product);
+        Task UpdateExistingProduct(Product product);
     }
 }

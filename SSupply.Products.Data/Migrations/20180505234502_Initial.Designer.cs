@@ -11,7 +11,7 @@ using System;
 namespace SSupply.Products.Data.Migrations
 {
     [DbContext(typeof(ProductsDbContext))]
-    [Migration("20180505233641_Initial")]
+    [Migration("20180505234502_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,18 +36,18 @@ namespace SSupply.Products.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("ProductDefinitions");
                 });
 
             modelBuilder.Entity("SSupply.Products.Data.Models.ProductImage", b =>
                 {
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid>("ProductDefinitionId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<byte[]>("Image")
                         .IsRequired();
 
-                    b.HasKey("ProductId");
+                    b.HasKey("ProductDefinitionId");
 
                     b.ToTable("ProductImages");
                 });

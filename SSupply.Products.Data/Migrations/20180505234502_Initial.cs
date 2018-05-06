@@ -9,19 +9,7 @@ namespace SSupply.Products.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ProductImages",
-                columns: table => new
-                {
-                    ProductId = table.Column<Guid>(nullable: false),
-                    Image = table.Column<byte[]>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductImages", x => x.ProductId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Products",
+                name: "ProductDefinitions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -31,17 +19,29 @@ namespace SSupply.Products.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_ProductDefinitions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductImages",
+                columns: table => new
+                {
+                    ProductDefinitionId = table.Column<Guid>(nullable: false),
+                    Image = table.Column<byte[]>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductImages", x => x.ProductDefinitionId);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ProductImages");
+                name: "ProductDefinitions");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "ProductImages");
         }
     }
 }
