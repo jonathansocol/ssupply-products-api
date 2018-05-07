@@ -10,6 +10,7 @@ namespace SSupply.Products.Interfaces
     {
         Task Delete(Guid id);
         IEnumerable<Product> GetAll();
+        IEnumerable<Product> GetAllByName(string name);
         Product GetById(Guid id);
         Task<Guid> Insert(Product product);
         Task Update(Product product);

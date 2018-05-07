@@ -53,6 +53,19 @@ namespace SSupply.Products.Api.Controllers
             return Ok(product);
         }
 
+        [HttpGet("search/{term}")]
+        public ActionResult Get(string term)
+        {
+            var product = _productService.SearchProductsByName(term);
+
+            if (product == null)
+            {
+                return NotFound(term);
+            }
+
+            return Ok(product);
+        }
+
         // POST api/values
         [HttpPost]
         public async Task<ActionResult> Post([FromBody]ProductDefinitionDto productDto)

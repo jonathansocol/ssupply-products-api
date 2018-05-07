@@ -22,6 +22,11 @@ namespace SSupply.Products.Services
             return _productManager.GetById(id);
         }
 
+        public IEnumerable<Product> SearchProductsByName(string name)
+        {
+            return _productManager.GetAllByName(name);
+        }
+
         public IEnumerable<Product> GetAllProducts()
         {
             return _productManager.GetAll();

@@ -4,6 +4,7 @@ using SSupply.Products.Exceptions;
 using SSupply.Products.Interfaces;
 using SSupply.Products.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,7 +46,16 @@ namespace SSupply.Products.Data.Managers
 
         public IEnumerable<Product> GetAll()
         {
-            return _productDefinitionRepository.GetAll().Select(x => new Product(x.Id, x.Name, null, x.Price));
+            return _productDefinitionRepository
+                .GetAll()
+                .Select(x => new Product(x.Id, x.Name, null, x.Price));
+        }
+
+        public IEnumerable<Product> GetAllByName(string name)
+        {
+            return _productDefinitionRepository
+                .GetAllBy(x => x.Name.ToLower().Contains(name.ToLower()))
+                .Select(x => new Product(x.Id, x.Name, null, x.Price));
         }
 
         public async Task<Guid> Insert(Product product)
