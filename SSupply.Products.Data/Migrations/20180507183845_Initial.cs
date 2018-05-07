@@ -15,23 +15,12 @@ namespace SSupply.Products.Data.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     LastUpdated = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: false),
+                    Photo = table.Column<string>(nullable: false),
                     Price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductDefinitions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProductImages",
-                columns: table => new
-                {
-                    ProductDefinitionId = table.Column<Guid>(nullable: false),
-                    Image = table.Column<byte[]>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductImages", x => x.ProductDefinitionId);
                 });
         }
 
@@ -39,9 +28,6 @@ namespace SSupply.Products.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ProductDefinitions");
-
-            migrationBuilder.DropTable(
-                name: "ProductImages");
         }
     }
 }

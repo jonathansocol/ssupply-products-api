@@ -11,7 +11,7 @@ using System;
 namespace SSupply.Products.Data.Migrations
 {
     [DbContext(typeof(ProductsDbContext))]
-    [Migration("20180505234502_Initial")]
+    [Migration("20180507183845_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,24 +32,14 @@ namespace SSupply.Products.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<string>("Photo")
+                        .IsRequired();
+
                     b.Property<decimal>("Price");
 
                     b.HasKey("Id");
 
                     b.ToTable("ProductDefinitions");
-                });
-
-            modelBuilder.Entity("SSupply.Products.Data.Models.ProductImage", b =>
-                {
-                    b.Property<Guid>("ProductDefinitionId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<byte[]>("Image")
-                        .IsRequired();
-
-                    b.HasKey("ProductDefinitionId");
-
-                    b.ToTable("ProductImages");
                 });
 #pragma warning restore 612, 618
         }

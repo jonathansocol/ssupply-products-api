@@ -31,24 +31,14 @@ namespace SSupply.Products.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<string>("Photo")
+                        .IsRequired();
+
                     b.Property<decimal>("Price");
 
                     b.HasKey("Id");
 
                     b.ToTable("ProductDefinitions");
-                });
-
-            modelBuilder.Entity("SSupply.Products.Data.Models.ProductImage", b =>
-                {
-                    b.Property<Guid>("ProductDefinitionId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<byte[]>("Image")
-                        .IsRequired();
-
-                    b.HasKey("ProductDefinitionId");
-
-                    b.ToTable("ProductImages");
                 });
 #pragma warning restore 612, 618
         }

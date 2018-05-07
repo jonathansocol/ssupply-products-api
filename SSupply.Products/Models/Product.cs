@@ -5,7 +5,9 @@ namespace SSupply.Products.Models
 {
     public class Product
     {
-        public Product(Guid id, string name, byte[] photo, decimal price)
+        public Product() { }
+
+        public Product(Guid id, string name, string photo, decimal price)
         {
             Id = id;
             Name = name;
@@ -17,7 +19,7 @@ namespace SSupply.Products.Models
 
         public string Name { get; set; }
 
-        public byte[] Photo { get; set; }
+        public string Photo { get; set; }
 
         public decimal Price { get; set; }
     }

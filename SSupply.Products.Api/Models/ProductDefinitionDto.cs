@@ -7,7 +7,7 @@ namespace SSupply.Products.Api.Models
 {
     public class ProductDefinitionDto
     {
-        public ProductDefinitionDto(string name, byte[] photo, decimal price)
+        public ProductDefinitionDto(string name, string photo, decimal price)
         {
             Name = name;
             Photo = photo;
@@ -16,7 +16,7 @@ namespace SSupply.Products.Api.Models
         
         public string Name { get; set; }
 
-        public byte[] Photo { get; set; }
+        public string Photo { get; set; }
 
         public decimal Price { get; set; }
     }

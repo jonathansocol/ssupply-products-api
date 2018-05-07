@@ -7,7 +7,7 @@ namespace SSupply.Products.Api.Models
 {
     public class ProductDto
     {
-        public ProductDto(Guid id, string name, byte[] photo, decimal price)
+        public ProductDto(Guid id, string name, string photo, decimal price)
         {
             Id = id;
             Name = name;
@@ -19,7 +19,7 @@ namespace SSupply.Products.Api.Models
 
         public string Name { get; set; }
 
-        public byte[] Photo { get; set; }
+        public string Photo { get; set; }
 
         public decimal Price { get; set; }
     }

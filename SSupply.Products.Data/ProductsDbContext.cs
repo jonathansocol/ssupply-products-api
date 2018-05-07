@@ -14,7 +14,6 @@ namespace SSupply.Products.Data
         public ProductsDbContext(DbContextOptions<ProductsDbContext> options) : base(options) { }
 
         public virtual DbSet<ProductDefinition> ProductDefinitions { get; set; }
-        public virtual DbSet<ProductImage> ProductImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

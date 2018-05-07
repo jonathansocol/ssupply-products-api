@@ -13,6 +13,10 @@ namespace SSupply.Products.Data.Models
         [Required]
         public string Name { get; set; }
 
+        [Url]
+        [Required]
+        public string Photo { get; set; }
+
         [Required]
         public decimal Price { get; set; }
 
