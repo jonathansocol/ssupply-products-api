@@ -33,7 +33,8 @@ namespace SSupply.Products.Data.Managers
                 productDefinition.Id, 
                 productDefinition.Name,
                 productDefinition.Photo, 
-                productDefinition.Price
+                productDefinition.Price,
+                productDefinition.LastUpdated
             );
 
             return product;
@@ -43,7 +44,7 @@ namespace SSupply.Products.Data.Managers
         {
             var products = _productDefinitionRepository
                 .GetAll()
-                .Select(x => new Product(x.Id, x.Name, x.Photo, x.Price));
+                .Select(x => new Product(x.Id, x.Name, x.Photo, x.Price, x.LastUpdated));
             
             return products;
         }
@@ -52,7 +53,7 @@ namespace SSupply.Products.Data.Managers
         {
             return _productDefinitionRepository
                 .GetAllBy(x => x.Name.ToLower().Contains(name.ToLower()))
-                .Select(x => new Product(x.Id, x.Name, x.Photo, x.Price));
+                .Select(x => new Product(x.Id, x.Name, x.Photo, x.Price, x.LastUpdated));
         }
 
         public async Task<Guid> Insert(Product product)

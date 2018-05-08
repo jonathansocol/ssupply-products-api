@@ -1,4 +1,5 @@
-﻿using SSupply.Products.Interfaces;
+﻿using SSupply.Products.Api.Interfaces;
+using SSupply.Products.Interfaces;
 using SSupply.Products.Models;
 using System;
 using System.Collections.Generic;

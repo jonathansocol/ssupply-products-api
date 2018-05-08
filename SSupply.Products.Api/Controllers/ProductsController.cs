@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SSupply.Products.Api.Interfaces;
 using SSupply.Products.Api.Models;
 using SSupply.Products.Exceptions;
 using SSupply.Products.Models;

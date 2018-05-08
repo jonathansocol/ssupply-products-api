@@ -11,6 +11,7 @@ using SSupply.Products.Data.Repositories;
 using SSupply.Products.Data.Interfaces;
 using SSupply.Products.Interfaces;
 using AutoMapper;
+using SSupply.Products.Api.Interfaces;
 
 namespace SSupply.Products.Api
 {

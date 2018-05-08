@@ -7,12 +7,13 @@ namespace SSupply.Products.Models
     {
         public Product() { }
 
-        public Product(Guid id, string name, string photo, decimal price)
+        public Product(Guid id, string name, string photo, decimal price, DateTime lastModified)
         {
             Id = id;
             Name = name;
             Photo = photo;
-            Price = price;      
+            Price = price;
+            LastModified = lastModified;
         }
 
         public Guid Id { get; set; }
@@ -22,5 +23,7 @@ namespace SSupply.Products.Models
         public string Photo { get; set; }
 
         public decimal Price { get; set; }
+
+        public DateTime LastModified { get; set; }
     }
 }
