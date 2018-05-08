@@ -40,28 +40,23 @@ namespace SSupply.Products.Api
             services.AddAutoMapper();
             services.AddMvc();
 
-            services.AddSwaggerGen(opt =>
-                {
-                    opt.SwaggerDoc("v1", new Info { Title = "Products API" });
-                }
-            );
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Product API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
             app.UseSwagger();
 
             var swaggerPath = Configuration["SwaggerPath"];
 
-            app.UseSwaggerUI(opt =>
+            app.UseSwaggerUI(c =>
             {
-                opt.SwaggerEndpoint(swaggerPath, "Products API");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Products API V1");
+                c.RoutePrefix = string.Empty;
             });
 
             app.UseMvc();

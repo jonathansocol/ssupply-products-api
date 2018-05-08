@@ -3,19 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSupply.Products.Api", "SSupply.Products.Api\SSupply.Products.Api.csproj", "{F9F155FF-AC5F-4166-A695-E5079976D7A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSupply.Products.Api", "SSupply.Products.Api\SSupply.Products.Api.csproj", "{F9F155FF-AC5F-4166-A695-E5079976D7A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSupply.Products.Data", "SSupply.Products.Data\SSupply.Products.Data.csproj", "{AD615BF0-484C-43DC-8346-2B15E8904916}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSupply.Products.Data", "SSupply.Products.Data\SSupply.Products.Data.csproj", "{AD615BF0-484C-43DC-8346-2B15E8904916}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{36AEA32D-6EF0-47DD-8BEF-166DB4C81151}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSupply.Products", "SSupply.Products\SSupply.Products.csproj", "{CB30CE27-7FC8-4C90-B415-BCC850CEC48A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSupply.Products", "SSupply.Products\SSupply.Products.csproj", "{CB30CE27-7FC8-4C90-B415-BCC850CEC48A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSupply.Products.Tests", "SSupply.Products.Tests\SSupply.Products.Tests.csproj", "{4F53A40A-ABC5-44BC-BC93-D8E4543EE438}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSupply.Products.Api.Tests", "SSupply.Products.Api.Tests\SSupply.Products.Api.Tests.csproj", "{6F16C317-51C4-4BB4-ADA7-722BB38F96CD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSupply.Products.Data.Tests", "SSupply.Products.Data.Tests\SSupply.Products.Data.Tests.csproj", "{811F0A33-B8FD-45E3-97A3-67A1188DD058}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSupply.Products.Tests", "SSupply.Products.Tests\SSupply.Products.Tests.csproj", "{4F53A40A-ABC5-44BC-BC93-D8E4543EE438}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,22 +35,12 @@ Global
 		{4F53A40A-ABC5-44BC-BC93-D8E4543EE438}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F53A40A-ABC5-44BC-BC93-D8E4543EE438}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F53A40A-ABC5-44BC-BC93-D8E4543EE438}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6F16C317-51C4-4BB4-ADA7-722BB38F96CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F16C317-51C4-4BB4-ADA7-722BB38F96CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F16C317-51C4-4BB4-ADA7-722BB38F96CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F16C317-51C4-4BB4-ADA7-722BB38F96CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{811F0A33-B8FD-45E3-97A3-67A1188DD058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{811F0A33-B8FD-45E3-97A3-67A1188DD058}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{811F0A33-B8FD-45E3-97A3-67A1188DD058}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{811F0A33-B8FD-45E3-97A3-67A1188DD058}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4F53A40A-ABC5-44BC-BC93-D8E4543EE438} = {36AEA32D-6EF0-47DD-8BEF-166DB4C81151}
-		{6F16C317-51C4-4BB4-ADA7-722BB38F96CD} = {36AEA32D-6EF0-47DD-8BEF-166DB4C81151}
-		{811F0A33-B8FD-45E3-97A3-67A1188DD058} = {36AEA32D-6EF0-47DD-8BEF-166DB4C81151}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {69C320D1-ACEF-448A-8488-327D896F45FC}
